@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <!--
+        1.制定了该模块的父项目模块 groupId + artifactId
+            <parent>
+                <groupId>com.zk</groupId>
+                <artifactId>zk_maven_project</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </parent>
+        2.当前模块的groupId 就是父项目的 com.zk
+    -->
+
+    <!--<parent>-->
+    <!--    <groupId>com.zk</groupId>-->
+    <!--    <artifactId>zk_maven_project</artifactId>-->
+    <!--    <version>1.0-SNAPSHOT</version>-->
+    <!--</parent>-->
+
+    <groupId>org.example</groupId>
+    <artifactId>mybatis_quickstart</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <!--加入依赖-->
+    <dependencies>
+        <!--mysql依赖-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.49</version>
+        </dependency>
+        <!--mybatis依赖-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.7</version>
+        </dependency>
+        <!--junit依赖-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <!--如果这里有 <scope>test</scope> 表示该jar包的作用范围只在test目录-->
+            <!--<scope>test</scope>-->
+        </dependency>
+    </dependencies>
+
+    <!--在build中配置resources，来防止我们资源导出失败的问题
+        老韩解读：
+        1. 不同的idea/maven 可能提示的错误不一样
+        2. 不变应万变，少什么文件，就增加相应配置即可
+        3. 含义是将 src/main/java目录和子目录 和 src/main/resources目录和子目录
+        的资源文件 xml 和 properties在build项目时，导出到对应的target目录下
+    -->
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+</project>
